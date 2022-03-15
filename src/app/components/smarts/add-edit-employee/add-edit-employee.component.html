@@ -1,0 +1,94 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6 mt-4" >
+      <h2 style="font-size: 17px; font-weight: bold;">{{action}} employee</h2>
+    </div>
+  </div>
+  <div class="row form-section">
+    <div class="col-lg-4">
+      <mat-card class="form-card">
+        <form [formGroup]="employeeForm" action="" autocomplete="off">
+          <div>
+            <mat-form-field appearance="fill" style="width: 100%;">
+              <mat-label>Name *</mat-label>
+              <input matInput formControlName="name">
+            </mat-form-field>
+            <div *ngIf="this.employeeForm.get('name').hasError('required') && this.employeeForm.get('name')?.touched">
+              <p style="color: red;">Este campo es requerido.</p>
+            </div>
+            <div *ngIf="this.employeeForm.get('name').hasError('maxlength') && this.employeeForm.get('name')?.touched">
+              <p style="color: red;">Este campo debe tener un máximo de 30 carácteres.</p>
+            </div>
+          </div>
+          <div>
+            <mat-form-field appearance="fill" style="width: 100%;">
+              <mat-label>Email *</mat-label>
+              <input matInput formControlName="email" >
+            </mat-form-field>
+            <div *ngIf="this.employeeForm.get('email').hasError('required') && this.employeeForm.get('email')?.touched">
+              <p style="color: red;">Este campo es requerido.</p>
+            </div> <div *ngIf="this.employeeForm.get('email').hasError('email') && this.employeeForm.get('email')?.touched">
+              <p style="color: red;">Escriba un email válido.</p>
+            </div>
+          </div>
+
+          <div>
+            <mat-form-field appearance="fill" style="width: 100%;">
+              <mat-label>Phone *</mat-label>
+              <input matInput formControlName="phone">
+            </mat-form-field>
+            <div *ngIf="this.employeeForm.get('phone').hasError('required') && this.employeeForm.get('phone')?.touched">
+              <p style="color: red;">Este campo es requerido.</p>
+            </div>
+          </div>
+
+          <div>
+            <mat-form-field appearance="fill" style="width: 100%;">
+              <mat-label>Marital Status *</mat-label>
+              <mat-select formControlName="maritalStatus">
+                <mat-option *ngFor="let s of status" [value]="s.value">
+                  {{s.status}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <div *ngIf="this.employeeForm.get('maritalStatus').hasError('required') && this.employeeForm.get('maritalStatus')?.touched">
+              <p style="color: red;">Este campo es requerido.</p>
+            </div>
+          </div>
+
+          <div>
+            <mat-form-field appearance="fill" style="width: 100%;">
+              <mat-label>Join date *</mat-label>
+              <input matInput [matDatepicker]="picker" formControlName="joinDate">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <div *ngIf="this.employeeForm.get('joinDate').hasError('required') && this.employeeForm.get('joinDate')?.touched">
+              <p style="color: red;">Este campo es requerido.</p>
+            </div>
+          </div>
+
+
+          <div>
+            <mat-radio-group aria-label="Select an option" formControlName="gender">
+              <mat-radio-button value="Male">Male</mat-radio-button>
+              <mat-radio-button value="Female">Female</mat-radio-button>
+            </mat-radio-group>
+            <div *ngIf="this.employeeForm.get('gender').hasError('required') && this.employeeForm.get('gender')?.touched">
+              <p style="color: red;">Este campo es requerido.</p>
+            </div>
+          </div>
+          <br>
+          <div class="submit-buttons">
+            <button mat-raised-button routerLink="'/'">Cancel</button>
+            <button mat-raised-button color="primary" (click)="submitEmployee()" [disabled]="employeeForm.invalid">{{action}}</button>
+          </div>
+        </form>
+      </mat-card>
+    </div>
+    <div class="col-lg-4 offset-lg-2">
+      <img src="../../../../assets/images/employees.jpg" alt="pch.vector" class="image-form">
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "empleados-6e804": {
+      "hosting": {
+        "CrudEmpleados": [
+          "empleados-6e804"
+        ]
+      }
+    }
+  }
+}
